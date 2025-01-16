@@ -8,6 +8,7 @@ const router = express.Router();
 router
       .post("/addItemToCart/:restaurantId/:itemId", authMiddlerware.auth, authMiddlerware.isCustomer, catchError, customerController.addItemToCart)
       .get("/restaurantList", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.getRestaurants)
+      .post("/placeOrder", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.placeOrder)
       .get("/:restaurantId", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.getMenuItems)
       
 

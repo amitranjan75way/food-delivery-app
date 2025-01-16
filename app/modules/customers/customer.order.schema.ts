@@ -10,21 +10,18 @@ const orderSchema = new mongoose.Schema(
     restaurentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",
-      required: true,
+      // required: true,
     },
     deliveryStaffId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "DeliveryStaff",
     },
     items: [
-      {
-        menuId: {
-          type: mongoose.Schema.Types.ObjectId,
+          {
+            type: mongoose.Schema.Types.ObjectId,
           ref: "Menu",
           required: true,
-        },
-        quantity: { type: Number, required: true },
-      },
+        }
     ],
     totalAmount: { 
       type: Number, 
@@ -38,7 +35,7 @@ const orderSchema = new mongoose.Schema(
     deliveryAddress: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Address",
-      required: true,
+      // required: true,
     },
   },
   { timestamps: true }

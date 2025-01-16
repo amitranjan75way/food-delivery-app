@@ -4,6 +4,7 @@ import customerCartSchema from "./customer.cart.schema";
 import customerSchema from "./customer.schema";
 import mongoose from "mongoose";
 import createHttpError from "http-errors";
+import orderSchema from "./customer.order.schema";
 
 export const addItemToCartService = async ( userEmail: string, restaurantId: string, itemId: string) => {
   
@@ -56,4 +57,46 @@ export const addItemToCartService = async ( userEmail: string, restaurantId: str
   await cart.save();
 
   return cart;
+};
+
+export const placeOrderService = async (userEmail: string) => {
+
+  const user = await userSchema.findOne({ email: userEmail });
+  if (!user) {
+    throw createHttpError(404, "User not found");
+  }
+
+  // Fetch customer details
+  const customerDetails = await customerSchema.findById(user.additionalInfo);
+  if (!customerDetails || !customerDetails.cart) {
+    throw createHttpError(404, "Customer or cart not found");
+  }
+
+  // Fetch cart details
+  const cart = await customerCartSchema.findById(customerDetails.cart);
+  if (!cart || cart.items.length === 0) {
+    throw createHttpError(400, "Cart is empty, cannot place order");
+  }
+
+  // Create order directly from cart
+  const order = new orderSchema({
+    userId: cart.userId,
+    restaurentId: cart.restaurantId,
+    items: cart.items,
+    totalAmount: cart.totalAmount,
+    deliveryAddress: customerDetails.addresses,
+  });
+
+  const savedOrder = await order.save();
+
+  // Update customer's order history and clear the cart
+  customerDetails.orders.push(savedOrder._id);
+  cart.items = [];
+  cart.restaurantId = undefined;
+  cart.totalAmount = 0;
+
+  await customerDetails.save();
+  await cart.save();
+
+  return savedOrder;
 };
