@@ -5,9 +5,10 @@ import customerSchema from "./customer.schema";
 import mongoose from "mongoose";
 import createHttpError from "http-errors";
 import orderSchema from "./customer.order.schema";
+import restaurentSchema from "../restaurants/restaurent.schema";
 
-export const addItemToCartService = async ( userEmail: string, restaurantId: string, itemId: string) => {
-  
+export const addItemToCartService = async (userEmail: string, restaurantId: any, itemId: string) => {
+
   const user = await userSchema.findOne({ email: userEmail });
   if (!user) {
     throw new Error("User not found");
@@ -30,13 +31,18 @@ export const addItemToCartService = async ( userEmail: string, restaurantId: str
   if (!item) {
     throw createHttpError(404, "Item not found");
   }
-
+  const restaurant = await restaurentSchema.findById(restaurantId);
+  if (!restaurant) {
+    throw createHttpError(404, "Restaurant not found");
+  }
+  
   // If restaurantId is different, clear cart and add the new item
   if (cart.restaurantId && cart.restaurantId.toString() !== restaurantId) {
     cart.items = [];
     cart.totalAmount = 0;
-    cart.restaurantId = new mongoose.Types.ObjectId(restaurantId);
+    cart.restaurantId = restaurant._id;
   }
+  console.log(cart.restaurantId);
 
   // Check if the item is already in the cart
   const itemIndex = cart.items.findIndex(
@@ -47,6 +53,9 @@ export const addItemToCartService = async ( userEmail: string, restaurantId: str
     // Item already in cart, remove it
     cart.items.splice(itemIndex, 1);
     cart.totalAmount -= item.price;
+    if (cart.totalAmount < 0) {
+      cart.totalAmount = 0;
+    }
   } else {
     // Add item to cart
     cart.items.push(new mongoose.Types.ObjectId(itemId));
@@ -92,7 +101,7 @@ export const placeOrderService = async (userEmail: string) => {
   // Update customer's order history and clear the cart
   customerDetails.orders.push(savedOrder._id);
   cart.items = [];
-  cart.restaurantId = undefined;
+  cart.restaurantId = new mongoose.Types.ObjectId();
   cart.totalAmount = 0;
 
   await customerDetails.save();

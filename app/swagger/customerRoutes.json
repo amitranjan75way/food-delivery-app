@@ -1,5 +1,5 @@
 {
-  "/customers/addItemToCart/{restaurantId}/{itemId}": {
+  "/customer/addItemToCart/{restaurantId}/{itemId}": {
     "post": {
       "summary": "Add or remove an item to/from the cart",
       "tags": ["Customers"],
@@ -63,7 +63,7 @@
       }
     }
   },
-  "/customers/restaurantList": {
+  "/customer/restaurantList": {
     "get": {
       "summary": "Get the list of all restaurants",
       "tags": ["Customers"],
@@ -94,7 +94,7 @@
       }
     }
   },
-  "/customers/{restaurantId}": {
+  "/customer/{restaurantId}": {
     "get": {
       "summary": "Get menu items for a specific restaurant",
       "tags": ["Customers"],
@@ -151,7 +151,7 @@
       }
     }
   },
-  "/customers/placeOrder": {
+  "/customer/placeOrder": {
     "post": {
       "summary": "Place an order",
       "description": "Places an order for the items in the user's cart. If the cart is empty, it will return an error.",

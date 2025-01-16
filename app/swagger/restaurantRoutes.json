@@ -1,5 +1,5 @@
 {
-  "/restaurants/add-item": {
+  "/restaurant/add-item": {
     "post": {
       "summary": "Add a new menu item to the restaurant",
       "tags": [
@@ -73,7 +73,7 @@
       }
     }
   },
-  "/restaurants/menu/{restaurantId}": {
+  "/restaurant/menu/{restaurantId}": {
     "get": {
       "summary": "Get all menu items for a specific restaurant",
       "tags": [
@@ -134,7 +134,7 @@
       }
     }
   },
-  "/restaurants": {
+  "/restaurant": {
     "get": {
       "summary": "Get the list of all restaurants",
       "tags": [

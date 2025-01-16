@@ -10,22 +10,22 @@ const orderSchema = new mongoose.Schema(
     restaurentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",
-      // required: true,
+      required: true,
     },
     deliveryStaffId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "DeliveryStaff",
     },
     items: [
-          {
-            type: mongoose.Schema.Types.ObjectId,
-          ref: "Menu",
-          required: true,
-        }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Menu",
+        required: true,
+      }
     ],
-    totalAmount: { 
-      type: Number, 
-      required: true 
+    totalAmount: {
+      type: Number,
+      required: true
     },
     status: {
       type: String,

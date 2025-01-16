@@ -16,6 +16,7 @@ const CartSchema = new mongoose.Schema(
     restaurantId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",
+      default: null,
       required: false,
     },
     totalAmount: {
