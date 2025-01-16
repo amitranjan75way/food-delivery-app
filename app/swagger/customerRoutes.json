@@ -1,0 +1,160 @@
+{
+  "/api/customers/addItemToCart/{restaurantId}/{itemId}": {
+    "post": {
+      "summary": "Add or remove an item to/from the cart",
+      "tags": [
+        "Customers"
+      ],
+      "parameters": [
+        {
+          "name": "restaurantId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the restaurant",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "itemId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the menu item",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Item added to or removed from the cart successfully",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": true,
+                "data": {
+                  "cartId": "63f21c84e7a51093c507d202",
+                  "items": [
+                    {
+                      "id": "63f21c84e7a51093c507d203",
+                      "name": "Pizza",
+                      "price": 10
+                    }
+                  ],
+                  "totalAmount": 10,
+                  "restaurantId": "63f21c84e7a51093c507d204"
+                },
+                "message": "Item added to cart successfully"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Resource not found",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": false,
+                "error_code": 404,
+                "message": "Item or customer/cart not found",
+                "data": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/customers/restaurantList": {
+    "get": {
+      "summary": "Get the list of all restaurants",
+      "tags": [
+        "Customers"
+      ],
+      "responses": {
+        "200": {
+          "description": "List of restaurants fetched successfully",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": true,
+                "data": [
+                  {
+                    "id": "63f21c84e7a51093c507d205",
+                    "name": "Italian Bistro",
+                    "address": "123 Main St"
+                  },
+                  {
+                    "id": "63f21c84e7a51093c507d206",
+                    "name": "Sushi House",
+                    "address": "456 Elm St"
+                  }
+                ],
+                "message": "Restaurants fetched successfully"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/customers/{restaurantId}": {
+    "get": {
+      "summary": "Get menu items for a specific restaurant",
+      "tags": [
+        "Customers"
+      ],
+      "parameters": [
+        {
+          "name": "restaurantId",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the restaurant",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Menu items fetched successfully",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": true,
+                "data": [
+                  {
+                    "id": "63f21c84e7a51093c507d207",
+                    "name": "Pasta",
+                    "price": 12,
+                    "isAvailable": true
+                  },
+                  {
+                    "id": "63f21c84e7a51093c507d208",
+                    "name": "Salad",
+                    "price": 8,
+                    "isAvailable": true
+                  }
+                ],
+                "message": "Menu items fetched successfully"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Restaurant not found",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": false,
+                "error_code": 404,
+                "message": "Restaurant not found",
+                "data": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
