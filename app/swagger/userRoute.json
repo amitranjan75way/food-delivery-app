@@ -1,5 +1,5 @@
 {
-  "/api/users/register": {
+  "/users/register": {
     "post": {
       "summary": "Register a new user, Customer or Restaurant or Delivery Staff",
       "tags": [
@@ -55,7 +55,7 @@
       }
     }
   },
-  "/api/users/login": {
+  "/users/login": {
     "post": {
       "summary": "Login for Customer, Restaurant or Delivery Staff",
       "tags": [
@@ -112,7 +112,7 @@
       }
     }
   },
-  "/api/users/logout": {
+  "/users/logout": {
     "post": {
       "summary": "Logout a user",
       "tags": [
