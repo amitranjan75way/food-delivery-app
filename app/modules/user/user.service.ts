@@ -50,7 +50,6 @@ export const createUser = async (data: IUser) => {
 };
 
 
-
 // these are not used in the project
 export const isUserExistByEamil = async (email: string) => {
     const user = await UserSchema.findOne({ email: email });
