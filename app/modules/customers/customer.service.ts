@@ -7,7 +7,7 @@ import createHttpError from "http-errors";
 import orderSchema from "./customer.order.schema";
 import restaurentSchema from "../restaurants/restaurent.schema";
 
-export const addItemToCartService = async (userEmail: string, restaurantId: any, itemId: string) => {
+export const addItemToCartService = async (userEmail: string, restaurantId: string, itemId: string) => {
 
   const user = await userSchema.findOne({ email: userEmail });
   if (!user) {

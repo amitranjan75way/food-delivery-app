@@ -9,16 +9,17 @@ import customerCartSchema from "../customers/customer.cart.schema";
 
 export const createUser = async (data: IUser) => {
     const result = await UserSchema.create({ ...data });
-    if(data.role === "RESTAURANT") {
+    if (data.role === "RESTAURANT") {
         const restaurant = new restaurantSchema({
             userId: result._id,
             menu: [],
-            address: null
+            address: null,
+            orders: []
         });
         const res = await restaurant.save();
         result.additionalInfo = res._id as any;
         await result.save();
-    }else if(data.role === "DELIVERY_STAFF") {
+    } else if (data.role === "DELIVERY_STAFF") {
         const deliveryStaff = new deliveryStaffSchema({
             userId: result._id,
             address: null
@@ -26,7 +27,7 @@ export const createUser = async (data: IUser) => {
         const res = await deliveryStaff.save();
         result.additionalInfo = res._id as any;
         await result.save();
-    }else{
+    } else {
         const cart = new customerCartSchema({
             userId: result._id,
             items: [],
@@ -51,24 +52,24 @@ export const createUser = async (data: IUser) => {
 
 
 // these are not used in the project
-export const isUserExistByEamil = async(email: string) => {
-    const user = await UserSchema.findOne({email: email});
-    if(user) {
+export const isUserExistByEamil = async (email: string) => {
+    const user = await UserSchema.findOne({ email: email });
+    if (user) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-export const findUserByEmail = async(email: string) => {
-    const user = await UserSchema.findOne({email: email});
+export const findUserByEmail = async (email: string) => {
+    const user = await UserSchema.findOne({ email: email });
     return user;
 }
 
 export const updateRefreshToken = async (id: string, refreshToken: string) => {
     const user = await UserSchema.findByIdAndUpdate(id,
-        {refreshToken},
-        {new: true}
+        { refreshToken },
+        { new: true }
     );
     return user;
 }
@@ -79,6 +80,6 @@ export const getUserByEmail = async (email: string) => {
 };
 
 export const deleteRefreshToken = async (email: string) => {
-    const user = await UserSchema.findOneAndUpdate({email}, {refreshToken: ''});
+    const user = await UserSchema.findOneAndUpdate({ email }, { refreshToken: '' });
     return user;
 }

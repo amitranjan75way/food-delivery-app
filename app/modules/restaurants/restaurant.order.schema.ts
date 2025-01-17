@@ -13,13 +13,10 @@ const restaurantOrderSchema = new mongoose.Schema({
   },
   order: [
     {
-      menuId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Menu",
-        required: true,
-      },
-      quantity: { type: Number, required: true },
-    },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Menu",
+      required: true,
+    }
   ],
   totalAmount: { type: Number, required: true },
   status: {

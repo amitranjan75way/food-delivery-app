@@ -17,6 +17,12 @@ const RestaurantSchema = new mongoose.Schema(
         ref: "Menu",
       },
     ],
+    orders: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
   },
   { timestamps: true }
 );
