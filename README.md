@@ -68,11 +68,7 @@ Follow these steps to set up and run the project locally:
 ## Folder Structure
 ![diagram-export-18-01-2025-16_30_45](https://github.com/user-attachments/assets/69c322ce-5ba8-48d6-8cf1-e2f63d000ef2)
 
-## Built With
-- Node.js: Backend runtime environment.
-- Express.js: Framework for building REST APIs.
-- MongoDB: Database for storing user and order data.
-- Nodemailer: Library for email notifications.
+
 
 
    
