@@ -46,14 +46,14 @@ Follow these steps to set up and run the project locally:
 
 1. Clone the repository:
    ```bash
-    git clone <repository-url>
+    git clone https://github.com/amitranjan75way/food-delivery-app
 2. go to project directory
    ```bash
     cd food-delivery-backend
 3. Install dependencies:
-  ```bash
+   ```bash
     npm install
-  ```
+   ```
 4. run file
    ```bash
     npm run local
@@ -63,6 +63,8 @@ Follow these steps to set up and run the project locally:
 - Email Notifications: Automatic emails for customers and restaurants after order placement.
 - Order Management: Real-time order placement and status updates.
 - Menu Management: Restaurants can manage their menu listings.
+  ![diagram-export-18-01-2025-16_12_10](https://github.com/user-attachments/assets/989cc7a2-72c2-4fa6-a7c3-8953f6fd2998)
+
 ## Built With
 - Node.js: Backend runtime environment.
 - Express.js: Framework for building REST APIs.
