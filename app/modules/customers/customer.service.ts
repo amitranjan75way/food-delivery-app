@@ -7,26 +7,26 @@ import createHttpError from "http-errors";
 import orderSchema from "./customer.order.schema";
 import restaurentSchema from "../restaurants/restaurent.schema";
 
-export const addItemToCartService = async (userEmail: string, restaurantId: string, itemId: string) => {
-
+export const addItemToCartService = async (
+  userEmail: string,
+  restaurantId: string,
+  itemId: string
+) => {
   const user = await userSchema.findOne({ email: userEmail });
   if (!user) {
     throw new Error("User not found");
   }
 
-  // Fetch customer
   const customer = await customerSchema.findById(user.additionalInfo);
   if (!customer) {
     throw createHttpError(404, "Customer not found");
   }
 
-  // Fetch customer's cart
   const cart = await customerCartSchema.findById(customer.cart);
   if (!cart) {
     throw createHttpError(404, "Cart not found");
   }
 
-  // Fetch item from restaurant menu
   const item = await restaurantMenuSchema.findById(itemId);
   if (!item) {
     throw createHttpError(404, "Item not found");
@@ -35,7 +35,7 @@ export const addItemToCartService = async (userEmail: string, restaurantId: stri
   if (!restaurant) {
     throw createHttpError(404, "Restaurant not found");
   }
-  
+
   // If restaurantId is different, clear cart and add the new item
   if (cart.restaurantId && cart.restaurantId.toString() !== restaurantId) {
     cart.items = [];
@@ -69,19 +69,17 @@ export const addItemToCartService = async (userEmail: string, restaurantId: stri
 };
 
 export const placeOrderService = async (userEmail: string) => {
-
   const user = await userSchema.findOne({ email: userEmail });
   if (!user) {
     throw createHttpError(404, "User not found");
   }
 
-  // Fetch customer details
   const customerDetails = await customerSchema.findById(user.additionalInfo);
   if (!customerDetails || !customerDetails.cart) {
     throw createHttpError(404, "Customer or cart not found");
   }
 
-  // Fetch cart details
+  // Fetching cart details
   const cart = await customerCartSchema.findById(customerDetails.cart);
   if (!cart || cart.items.length === 0) {
     throw createHttpError(400, "Cart is empty, cannot place order");

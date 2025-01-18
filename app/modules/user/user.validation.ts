@@ -20,15 +20,3 @@ export const createUser = [
 
 
 
-// not used in project
-export const resetUserPassword = [
-    body('resetLink').notEmpty().withMessage('reset link is required').isString().withMessage('reset link must be a string'),
-    body('newPassword').notEmpty().withMessage('New password is required').isString().withMessage('New password must be a string'),
-];
-
-export const getUsersByDateRange = [
-    query('startDate').optional().isISO8601().withMessage('startDate must be a valid ISO 8601 date'),
-    query('endDate').optional().isISO8601().withMessage('endDate must be a valid ISO 8601 date')
-];
-
-
