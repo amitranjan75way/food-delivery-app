@@ -65,6 +65,9 @@ Follow these steps to set up and run the project locally:
 - Menu Management: Restaurants can manage their menu listings.
   ![diagram-export-18-01-2025-16_12_10](https://github.com/user-attachments/assets/989cc7a2-72c2-4fa6-a7c3-8953f6fd2998)
 
+## Folder Structure
+![diagram-export-18-01-2025-16_30_45](https://github.com/user-attachments/assets/69c322ce-5ba8-48d6-8cf1-e2f63d000ef2)
+
 ## Built With
 - Node.js: Backend runtime environment.
 - Express.js: Framework for building REST APIs.
