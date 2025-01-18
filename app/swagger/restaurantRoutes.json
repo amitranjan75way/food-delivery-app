@@ -183,9 +183,9 @@
       }
     }
   },
-  "/restaurant/accept-reject-order/{restaurantId}/{orderId}": {
-    "post": {
-      "summary": "Accept or reject an order for a specific restaurant",
+  "/restaurant/order/{restaurantId}/{orderId}": {
+    "put": {
+      "summary": "Update order status by Restaurant",
       "tags": [
         "Restaurants"
       ],
@@ -219,11 +219,13 @@
                 "status": {
                   "type": "string",
                   "enum": [
-                    "CONFIRMED",
-                    "CANCELED"
+                    "accepted",
+                    "rejected", 
+                    "prepared", 
+                    "dispatched"
                   ],
                   "description": "Status to update the order with",
-                  "example": "CONFIRMED"
+                  "example": "accepted"
                 }
               },
               "required": [

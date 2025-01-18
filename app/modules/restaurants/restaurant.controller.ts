@@ -18,12 +18,12 @@ export const addItem = asyncHandler(async (req: Request, res: Response, next: Ne
   res.send(createResponse(addedMenuItem, "Item added successfully"));
 });
 
-export const acceptRejectOrder = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+export const updateOrderStatus = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const orderId = req.params.orderId;
   const status = req.body.status;
   const restaurantId = req.params.restaurantId;
   
-  const {order, user} = await restaurantService.acceptRejectOrder(restaurantId, orderId, status);
+  const {order, user} = await restaurantService.updateOrderStatus(restaurantId, orderId, status);
   const mailOptions = {
     from: `Food Delivery app - Amit Ranjan`,
     to: `${user.email}`,

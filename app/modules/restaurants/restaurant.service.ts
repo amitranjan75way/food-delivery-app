@@ -36,7 +36,7 @@ export const getRestaurantList = async () => {
   return restaurants;
 }
 
-export const acceptRejectOrder = async (restaurantId: string, orderId: string, status: string) => {
+export const updateOrderStatus = async (restaurantId: string, orderId: string, status: string) => {
   const order = await OrderSchema.findByIdAndUpdate(orderId, { status: status }, { new: true });
   if (!order) {
     throw createHttpError(404, 'Order not found');
