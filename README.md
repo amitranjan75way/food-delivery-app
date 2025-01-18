@@ -1,18 +1,44 @@
-# Food Delivery Backend Application
+# 🍴 Food Delivery Backend Application
 
-This is a backend application for a food delivery service designed to streamline interactions between customers, restaurants, and delivery staff. It supports user authentication, order management, and email notifications. The project demonstrates backend development skills in the JavaScript environment.
+This backend application is built to streamline interactions between **Customers**, **Restaurants**, and **Delivery Staff**, ensuring efficient order management, real-time status updates, and seamless communication via email notifications. 
 
-## Features
-- **User Roles:** Customers, Restaurants, and Delivery Staff.
-- **Authentication:** User login and sign-up functionalities.
-- **Customer Features:**
-  - View a list of restaurants.
-  - Browse restaurant menus and add items to the cart.
-  - Place orders and receive email notifications.
-- **Restaurant Features:**
-  - Add and manage menu items.
-  - Receive order notifications via email.
-  - Accept or decline orders.
+The project demonstrates advanced backend development skills in the JavaScript environment, with robust functionality and a clear structure.
+
+## 🌟 Features
+### User Roles
+- **Customer**: Browse menus, place orders, and track updates.
+- **Restaurant**: Manage menu items, handle orders (accept/reject/prepare/dispatch).
+- **Delivery Staff**: View and update delivery statuses.
+
+### Key Functionalities
+#### **Customer Features**
+- View a list of restaurants.
+- Browse restaurant menus and add items to the cart.
+- Place orders and receive real-time email notifications.
+- Track order status updates.
+
+#### **Restaurant Features**
+- Add and manage menu items.
+- Receive order notifications via email.
+- Handle orders with the following actions:
+  - **Accept/Reject**: Decide whether to process the order.
+  - **Prepare**: Update order status to "Prepared."
+  - **Dispatch**: Mark the order as dispatched.
+
+#### **Order Management Workflow**
+1. Order Placement (Customer).
+2. Order Notification (Email to Restaurant).
+3. Order Status Updates:
+   - Accepted → Prepared → Dispatched → Delivered.
+
+
+## 🔧 Built With
+- **Node.js**: Backend runtime environment.
+- **Express.js**: Framework for building REST APIs.
+- **MongoDB**: Database for storing user, menu, and order data.
+- **Nodemailer**: Library for sending email notifications.
+
+
 
 ## How to Run the Project
 
@@ -20,17 +46,17 @@ Follow these steps to set up and run the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+    git clone <repository-url>
 2. go to project directory
    ```bash
-   cd food-delivery-backend
+    cd food-delivery-backend
 3. Install dependencies:
   ```bash
-  npm install
+    npm install
   ```
 4. run file
    ```bash
-   npm run local
+    npm run local
    ```
 ## Project Structure
 - Authentication: Secure login and sign-up mechanisms.
