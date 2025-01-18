@@ -6,6 +6,7 @@ import * as restaurantService from "./restaurant.service";
 import { Menu } from "./restaurent.dto";
 import { IUser } from "../user/user.dto";
 import { Payload } from "../../common/dto/base.dto";
+import { sendEmail } from "../../common/services/email.service";
 
 export const addItem = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const data: Menu = req.body;
@@ -21,15 +22,14 @@ export const acceptRejectOrder = asyncHandler(async (req: Request, res: Response
   const orderId = req.params.orderId;
   const status = req.body.status;
   const restaurantId = req.params.restaurantId;
-  if (!orderId) {
-    throw createHttpError(400, "Order id is required");
+  
+  const {order, user} = await restaurantService.acceptRejectOrder(restaurantId, orderId, status);
+  const mailOptions = {
+    from: `Food Delivery app - Amit Ranjan`,
+    to: `${user.email}`,
+    subject: `Status of your order`,
+    text: `Hi there your order is ${order.status}`
   }
-  if (!status) {
-    throw createHttpError(400, "Status is required");
-  }
-  if(status !== "CONFIRMED" && status !== "CENCELED") {
-    throw createHttpError(400, "Invalid status");
-  }
-  const order = await restaurantService.acceptRejectOrder(restaurantId, orderId, status);
+  await sendEmail(mailOptions);
   res.send(createResponse(order, "Order updated successfully"));
 });

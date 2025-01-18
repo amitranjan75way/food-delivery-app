@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { Menu } from './restaurent.dto';
 import RestaurantSchema from './restaurent.schema';
 import OrderSchema from '../customers/customer.order.schema';
+import createHttpError from 'http-errors';
 
 
 export const addItem = async (data: Menu, email: string) => {
@@ -30,7 +31,6 @@ export const getMenuItems = async (restaurantId: string) => {
 }
 
 export const getRestaurantList = async () => {
-  console.log("hello ji this is amit");
   const restaurants = await RestaurantSchema.find({});
 
   return restaurants;
@@ -39,9 +39,16 @@ export const getRestaurantList = async () => {
 export const acceptRejectOrder = async (restaurantId: string, orderId: string, status: string) => {
   const order = await OrderSchema.findByIdAndUpdate(orderId, { status: status }, { new: true });
   if (!order) {
-    throw new Error('Order not found');
+    throw createHttpError(404, 'Order not found');
   }
   const restaurant = await RestaurantSchema.findByIdAndUpdate(restaurantId, { orders: order._id }, { new: true });
+  if (!restaurant) {
+    throw createHttpError(404, 'Restaurant not found');
+  }
+  const user = await UserSchema.findById(order.userId);
+  if (!user) {
+    throw createHttpError(404, 'User not found');
+  }
 
-  return order;
+  return {order, user};
 }
