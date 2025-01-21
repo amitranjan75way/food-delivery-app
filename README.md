@@ -58,15 +58,16 @@ Follow these steps to set up and run the project locally:
    ```bash
     npm run local
    ```
+## ER Diagram 
+![ER-Diagram](https://github.com/user-attachments/assets/05e5a757-3ac1-44df-a29b-225865cc95ca)
+
+
 ## Project Structure
 - Authentication: Secure login and sign-up mechanisms.
 - Email Notifications: Automatic emails for customers and restaurants after order placement.
 - Order Management: Real-time order placement and status updates.
 - Menu Management: Restaurants can manage their menu listings.
   ![diagram-export-18-01-2025-16_12_10](https://github.com/user-attachments/assets/989cc7a2-72c2-4fa6-a7c3-8953f6fd2998)
-
-## Folder Structure
-![diagram-export-18-01-2025-16_30_45](https://github.com/user-attachments/assets/69c322ce-5ba8-48d6-8cf1-e2f63d000ef2)
 
 ## API Documentation -
 
