@@ -15,8 +15,7 @@ import * as UserService from '../user/user.service';
  * @throws {Error} If the user is not found.
  */
 export const addItem = async (data: Menu, email: string) => {
-  const menu = new MenuSchema(data);
-  const addedMenuItem = await menu.save();
+  
 
   const user = await UserService.getUserByEmail(email);
   if (!user) {
@@ -24,12 +23,14 @@ export const addItem = async (data: Menu, email: string) => {
   }
   const restaurantId = user.additionalInfo;
 
+  const menu = new MenuSchema(data);
+  const addedMenuItem = await menu.save();
+  
   const restaurant = await RestaurantSchema.findByIdAndUpdate(restaurantId, {
     $push: { menu: addedMenuItem._id },
   });
 
   return addedMenuItem;
-
 }
 
 /**
@@ -50,7 +51,6 @@ export const getMenuItems = async (restaurantId: string) => {
  */
 export const getRestaurantList = async () => {
   const restaurants = await RestaurantSchema.find({});
-
   return restaurants;
 }
 

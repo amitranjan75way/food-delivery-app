@@ -7,10 +7,10 @@ import * as customerValidator from './customer.validation';
 const router = express.Router();
 
 router
-      .post("/addItemToCart/:restaurantId/:itemId", authMiddlerware.auth, authMiddlerware.isCustomer, customerValidator.addToCartvalidator,catchError, customerController.addItemToCart)
+      .post("/addItemToCart/:restaurantId/:itemId", authMiddlerware.auth, authMiddlerware.isCustomer, customerValidator.addToCartvalidator, catchError, customerController.addItemToCart)
       .get("/restaurantList", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.getRestaurants)
       .post("/placeOrder", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.placeOrder)
-      .get("/:restaurantId", authMiddlerware.auth, authMiddlerware.isCustomer, customerController.getMenuItems)
+      .get("/:restaurantId", authMiddlerware.auth, authMiddlerware.isCustomer,customerValidator.getMenuItemsValidator, customerController.getMenuItems)
       
 
 export default router;
