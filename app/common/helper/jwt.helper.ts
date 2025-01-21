@@ -6,7 +6,7 @@ loadConfig();
 
 const ACCESS_TOKEN_SECRET: string = process.env.ACCESS_TOKEN_SECRET as string;
 const REFRESH_TOKEN_SECRET: string = process.env.REFRESH_TOKEN_SECRET as string;
-const ACCESS_TOKEN_EXPIRY = '7d'; // 60 minutes
+const ACCESS_TOKEN_EXPIRY = '15min'; // 15 minutes
 const REFRESH_TOKEN_EXPIRY = '7d'; // 7 days
 
 
