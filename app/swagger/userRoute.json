@@ -2,9 +2,7 @@
   "/users/register": {
     "post": {
       "summary": "Register a new user, Customer or Restaurant or Delivery Staff",
-      "tags": [
-        "Users"
-      ],
+      "tags": ["Users"],
       "requestBody": {
         "required": true,
         "content": {
@@ -58,9 +56,7 @@
   "/users/login": {
     "post": {
       "summary": "Login for Customer, Restaurant or Delivery Staff",
-      "tags": [
-        "Users"
-      ],
+      "tags": ["Users"],
       "requestBody": {
         "required": true,
         "content": {
@@ -115,9 +111,7 @@
   "/users/logout": {
     "post": {
       "summary": "Logout a user",
-      "tags": [
-        "Users"
-      ],
+      "tags": ["Users"],
       "responses": {
         "200": {
           "description": "User logged out successfully",
@@ -127,6 +121,62 @@
                 "success": true,
                 "data": {},
                 "message": "User logged out successfully"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/users/update-access-token": {
+    "post": {
+      "summary": "Update the access token using the refresh token",
+      "tags": ["Users"],
+      "requestBody": {
+        "required": false,
+        "content": {
+          "application/json": {
+            "example": {}
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Access token updated successfully",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": true,
+                "data": {
+                  "accessToken": "new-access-token-here"
+                },
+                "message": "Access token updated successfully"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Refresh token not found or invalid",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": false,
+                "error_code": 401,
+                "message": "Invalid refresh token, Please login again",
+                "data": {}
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "User not found",
+          "content": {
+            "application/json": {
+              "example": {
+                "success": false,
+                "error_code": 404,
+                "message": "User not found",
+                "data": {}
               }
             }
           }
