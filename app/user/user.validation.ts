@@ -1,6 +1,5 @@
 
 import { body } from 'express-validator';
-import { query } from 'express-validator';
 
 export const registerUser = [
     body('name').notEmpty().withMessage('name is required').isString().withMessage('name must be a string'),
