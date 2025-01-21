@@ -67,7 +67,7 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
 export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     const data = req.body;
 
-    let user = await userService.findUserByEmail(data.email);
+    let user = await userService.getUserByEmail(data.email);
     if (!user) {
         throw createHttpError(404, "User not found");
     }

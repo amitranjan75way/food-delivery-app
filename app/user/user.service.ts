@@ -79,17 +79,16 @@ export const isUserExistByEamil = async (email: string) => {
     }
 }
 
-
 /**
- * Finds a user by their email address.
+ * Retrieves a user by their email address.
  *
- * @param {string} email - The email address of the user to find.
- * @returns {Promise<UserSchema | null>} A promise that resolves to the user if found, or null if not found.
+ * @param {string} email - The email address of the user to retrieve.
+ * @returns {Promise<any>} A promise that resolves to the user document if found, otherwise null.
  */
-export const findUserByEmail = async (email: string) => {
-    const user = await UserSchema.findOne({ email: email });
-    return user;
-}
+export const getUserByEmail = async (email: string) => {
+    const result = await UserSchema.findOne({ email }).lean();
+    return result;
+};
 
 
 /**
@@ -106,19 +105,6 @@ export const updateRefreshToken = async (id: string, refreshToken: string) => {
     );
     return user;
 }
-
-
-
-/**
- * Retrieves a user by their email address.
- *
- * @param {string} email - The email address of the user to retrieve.
- * @returns {Promise<any>} A promise that resolves to the user document if found, otherwise null.
- */
-export const getUserByEmail = async (email: string) => {
-    const result = await UserSchema.findOne({ email }).lean();
-    return result;
-};
 
 
 /**
