@@ -1,5 +1,5 @@
 
-import { type BaseSchema } from "../../common/dto/base.dto";
+import { type BaseSchema } from "../common/dto/base.dto";
 import mongoose from "mongoose";
 
 export interface IUser extends BaseSchema {
@@ -8,5 +8,5 @@ export interface IUser extends BaseSchema {
         role: "CUSTOMER" | "RESTAURANT" | "DELIVERY_STAFF";
         password: string;
         refreshToken: string;
-        additionalInfo: mongoose.Schema.Types.ObjectId;;
+        additionalInfo: mongoose.Schema.Types.ObjectId;
 }

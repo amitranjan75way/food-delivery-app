@@ -1,7 +1,7 @@
 import express from "express";
-import userRoutes from "./modules/user/user.route";
-import restaurantRoutes from "./modules/restaurants/restaurant.route";
-import customerRoutes from "./modules/customers/customer.route";
+import userRoutes from "./user/user.route";
+import restaurantRoutes from "./restaurants/restaurant.route";
+import customerRoutes from "./customers/customer.route";
 
 // routes
 const router = express.Router();

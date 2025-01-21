@@ -3,8 +3,8 @@ import { loadConfig } from "../helper/config.hepler";
 import { type NextFunction, type Request, type Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import createHttpError from "http-errors";
-import { type IUser } from "../../modules/user/user.dto";
-import UserSchema from "../../modules/user/user.schema";
+import { type IUser } from "../../user/user.dto";
+import UserSchema from "../../user/user.schema";
 import { decodeAccessToken } from "../helper/jwt.helper";
 
 loadConfig();

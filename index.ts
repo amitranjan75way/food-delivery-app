@@ -7,10 +7,11 @@ import cookieParser from "cookie-parser";
 import { initDB } from "./app/common/services/database.service";
 import { initPassport } from "./app/common/services/passport-jwt.service";
 import { loadConfig } from "./app/common/helper/config.hepler";
-import { type IUser } from "./app/modules/user/user.dto";
+import { type IUser } from "./app/user/user.dto";
 import errorHandler from "./app/common/middleware/error-handler.middleware";
 import routes from "./app/routes";
 import swaggerUi from "swagger-ui-express";
+import apiLimiter from "./app/common/middleware/rate-limit.middleware";
 
 loadConfig();
 
@@ -43,7 +44,7 @@ const initApp = async (): Promise<void> => {
   initPassport();
 
   // set base path to /api
-  app.use("/api", routes);
+  app.use("/api", apiLimiter, routes);
 
   app.get("/", (req: Request, res: Response) => {
     res.send({ status: "ok" });

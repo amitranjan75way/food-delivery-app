@@ -1,6 +1,6 @@
 import express from 'express';
-import { catchError } from '../../common/middleware/cath-error.middleware';
-import * as authMiddlerware from '../../common/middleware/auth.middleware';
+import { catchError } from '../common/middleware/cath-error.middleware';
+import * as authMiddlerware from '../common/middleware/auth.middleware';
 import * as customerController from './customer.controller';
 import * as customerValidator from './customer.validation';
 

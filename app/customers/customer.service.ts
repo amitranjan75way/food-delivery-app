@@ -7,6 +7,18 @@ import createHttpError from "http-errors";
 import orderSchema from "./customer.order.schema";
 import restaurentSchema from "../restaurants/restaurent.schema";
 
+
+/**
+ * Adds an item to the customer's cart. If the item is already in the cart, it will be removed.
+ * If the restaurantId is different from the current cart's restaurantId, the cart will be cleared
+ * and the new item will be added.
+ *
+ * @param {string} userEmail - The email of the user.
+ * @param {string} restaurantId - The ID of the restaurant.
+ * @param {string} itemId - The ID of the item to add to the cart.
+ * @returns {Promise<any>} - The updated cart.
+ * @throws {Error} - If the user, customer, cart, item, or restaurant is not found.
+ */
 export const addItemToCartService = async (
   userEmail: string,
   restaurantId: string,
@@ -68,6 +80,13 @@ export const addItemToCartService = async (
   return cart;
 };
 
+/**
+ * Places an order for the items in the user's cart and clears the cart.
+ *
+ * @param {string} userEmail - The email of the user.
+ * @returns {Promise<any>} - The order details.
+ * @throws {Error} - If the user, customer, cart, or order placement fails.
+ */
 export const placeOrderService = async (userEmail: string) => {
   const user = await userSchema.findOne({ email: userEmail });
   if (!user) {
