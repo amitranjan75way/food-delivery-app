@@ -59,7 +59,7 @@ Follow these steps to set up and run the project locally:
     npm run local
    ```
 ## ER Diagram 
-![ER-Diagram](https://github.com/user-attachments/assets/05e5a757-3ac1-44df-a29b-225865cc95ca)
+![ER-Diagram](https://github.com/user-attachments/assets/eaa57399-04f4-412f-b7fc-57997e43ea60)
 
 
 ## Project Structure
