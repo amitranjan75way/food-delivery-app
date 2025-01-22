@@ -2,7 +2,7 @@ import express from "express";
 import userRoutes from "./user/user.route";
 import restaurantRoutes from "./restaurants/restaurant.route";
 import customerRoutes from "./customers/customer.route";
-
+ 
 // routes
 const router = express.Router();
 

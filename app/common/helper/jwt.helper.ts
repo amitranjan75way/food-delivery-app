@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Payload } from '../dto/base.dto';
+import { Payload } from '../entity/base.entity';
 import { loadConfig } from "./config.hepler";
 import createHttpError from "http-errors";
 loadConfig();

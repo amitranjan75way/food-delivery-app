@@ -7,7 +7,7 @@ import { IUser } from "./user.dto";
 import { error } from "console";
 import createHttpError from "http-errors";
 import { generateTokens, validateToken } from "../common/helper/jwt.helper";
-import { Payload } from "../common/dto/base.dto";
+import { Payload } from "../common/entity/base.entity";
 import bcrypt from 'bcrypt'
 import { sendEmail } from "../common/services/email.service";
 import { resetPasswordEmailTemplate } from "../common/template/mail.template";

@@ -12,6 +12,8 @@ import errorHandler from "./app/common/middleware/error-handler.middleware";
 import routes from "./app/routes";
 import swaggerUi from "swagger-ui-express";
 import apiLimiter from "./app/common/middleware/rate-limit.middleware";
+import { connectToDatabase } from './app/common/services/postgres.database.service';
+
 
 loadConfig();
 
@@ -38,7 +40,8 @@ import swaggerDocument from "./app/swagger/swagger";
 
 const initApp = async (): Promise<void> => {
   // init mongodb
-  await initDB();
+  // await initDB();
+  await connectToDatabase();
 
   // passport init
   initPassport();

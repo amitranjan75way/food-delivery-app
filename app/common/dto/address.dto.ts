@@ -1,4 +1,5 @@
-export interface AddressDto {
+// IAddress interface (DTO)
+export interface IAddress {
   street: string;
   city: string;
   state: string;
