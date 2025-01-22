@@ -76,3 +76,7 @@ export const placeOrder = asyncHandler(async (req: Request, res: Response) => {
   await sendEmail(mailOptions);
   res.send(createResponse(order, "Order placed successfully"));
 });
+
+export const registerCustomer = asyncHandler(async(req: Request, res: Response) => {
+
+});
