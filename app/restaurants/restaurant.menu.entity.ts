@@ -16,8 +16,4 @@ export class Menu extends BaseEntity implements IMenu {
 
   @Column({ type: 'boolean', default: true })
   isAvailable: boolean;
-
-  @ManyToOne(() => Restaurant, (restaurant) => restaurant.menu, { nullable: false })
-  @JoinColumn({ name: 'restaurantId' })
-  restaurant: Restaurant;
 }

@@ -7,19 +7,16 @@ import { Order } from './customer.order.entity';
 import { ICustomer } from '../customers/customer.dto';
 
 @Entity('customer')
-export class Customer extends BaseEntity implements ICustomer {
-  @OneToOne(() => User, (user) => user.customer)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+export class Customer extends User implements ICustomer {
 
-  @OneToOne(() => Address, (address) => address.customer, { nullable: true })
-  @JoinColumn({ name: 'addressId' })
+  @OneToOne(() => Address, { nullable: true })
+  @JoinColumn()
   address: Address | null;
 
-  @OneToOne(() => Cart, (cart) => cart.customer, { nullable: true })
-  @JoinColumn({ name: 'cartId' })
+  @OneToOne(() => Cart, { nullable: true })
+  @JoinColumn()
   cart: Cart | null;
 
-  @OneToMany(() => Order, (order) => order.customer)
+  @OneToMany(() => Order)
   orders: Order[] | null;
 }

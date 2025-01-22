@@ -1,27 +1,27 @@
 import { Entity, ManyToOne, OneToMany, JoinColumn, Column } from 'typeorm';
-import { BaseEntity } from '../common/entities/BaseEntity';
+import { BaseEntity } from '../common/entity/base.entity';
 import { User } from '../user/user.entity';
-import { Restaurant } from '../restaurants/Restaurant.entity';
-import { DeliveryStaff } from '../deliveryStaff/DeliveryStaff.entity';
-import { Menu } from '../restaurants/Menu.entity';
-import { Address } from '../common/entities/Address.entity';
+import { Restaurant } from '../restaurants/restaurant.entity';
+import { DeliveryStaff } from '../deliveryStaff/deliveryStaff.entity';
+import { Menu } from '../restaurants/restaurant.menu.entity';
+import { Address } from '../common/entity/address.entity';
 import { IOrder } from '../customers/customer.dto';
 
 @Entity('order')
 export class Order extends BaseEntity implements IOrder {
-  @ManyToOne(() => User, (user) => user.orders)
-  @JoinColumn({ name: 'userId' })
+  @ManyToOne(() => User)
+  @JoinColumn()
   user: User;
 
-  @OneToOne(() => Restaurant, (restaurant) => restaurant.orders, { nullable: true })
-  @JoinColumn({ name: 'restaurantId' })
+  @OneToOne(() => Restaurant, { nullable: true })
+  @JoinColumn()
   restaurant: Restaurant | null;
 
-  @ManyToOne(() => DeliveryStaff, (deliveryStaff) => deliveryStaff.orders, { nullable: true })
+  @ManyToOne(() => DeliveryStaff, { nullable: true })
   @JoinColumn({ name: 'deliveryStaffId' })
   deliveryStaff: DeliveryStaff | null;
 
-  @OneToMany(() => Menu, (menu) => menu.order)
+  @OneToMany(() => Menu)
   items: Menu[];
 
   @Column('decimal')
@@ -38,3 +38,7 @@ export class Order extends BaseEntity implements IOrder {
   @JoinColumn({ name: 'deliveryAddressId' })
   deliveryAddress: Address | null;
 }
+function OneToOne(arg0: () => typeof Restaurant, arg1: { nullable: boolean; }): (target: Order, propertyKey: "restaurant") => void {
+  throw new Error('Function not implemented.');
+}
+

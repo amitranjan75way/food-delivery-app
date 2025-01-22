@@ -6,14 +6,7 @@ import { Order } from "../customers/customer.order.entity";
 import { User } from "../user/user.entity";
 
 @Entity('delivery_staff')
-export class DeliveryStaff extends BaseEntity implements IDeliveryStaff {
-  @ManyToOne(() => User, (user) => user.deliveryStaff)
-  @JoinColumn({ name: 'userId' })
-  user: User;
-
-  @ManyToOne(() => Address, (address) => address.deliveryStaff, { nullable: true })
-  @JoinColumn({ name: 'addressId' })
-  address: Address | null;
+export class DeliveryStaff extends User implements IDeliveryStaff {
 
   @Column({ type: 'enum', enum: ['active', 'inactive'], default: 'active' })
   status: 'active' | 'inactive';
@@ -21,6 +14,6 @@ export class DeliveryStaff extends BaseEntity implements IDeliveryStaff {
   @Column({ type: 'enum', enum: ['available', 'unavailable'], default: 'available' })
   availability: 'available' | 'unavailable';
 
-  @OneToMany(() => Order, (order) => order.deliveryStaff)
+  @OneToMany(() => Order)
   orders: Order[];
 }

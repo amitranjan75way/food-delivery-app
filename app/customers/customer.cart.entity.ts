@@ -8,7 +8,7 @@ import { ICart } from '../customers/customer.dto';
 @Entity('cart')
 export class Cart extends BaseEntity implements ICart {
   @OneToOne(() => User)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn()
   user: User;
 
   @ManyToMany(() => Menu)
@@ -19,8 +19,8 @@ export class Cart extends BaseEntity implements ICart {
   })
   items: Menu[];
 
-  @ManyToOne(() => Restaurant, { nullable: true })
-  @JoinColumn({ name: 'restaurantId' })
+  @OneToOne(() => Restaurant, { nullable: true })
+  @JoinColumn()
   restaurant: Restaurant | null;
 
   @Column('decimal')

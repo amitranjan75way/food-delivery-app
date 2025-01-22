@@ -8,18 +8,15 @@ import { IRestaurant } from './restaurent.dto';
 
 
 @Entity('restaurant')
-export class Restaurant extends BaseEntity implements IRestaurant {
-  @OneToOne(() => User, (user) => user.restaurant)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+export class Restaurant extends User implements IRestaurant {
 
-  @OneToOne(() => Address, (address) => address.restaurant, { nullable: true })
-  @JoinColumn({ name: 'addressId' })
+  @OneToOne(() => Address, { nullable: true })
+  @JoinColumn()
   address: Address | null;
 
-  @OneToMany(() => Menu, (menu) => menu.restaurant)
+  @OneToMany(() => Menu)
   menu: Menu[];
 
-  @OneToMany(() => Order, (order) => order.restaurant)
+  @OneToMany(() => Order)
   orders: Order[];
 }

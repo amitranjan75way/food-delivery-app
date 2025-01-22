@@ -18,7 +18,4 @@ export class User extends BaseEntity implements IUser {
 
   @Column({ type: 'varchar', nullable: true })
   refreshToken: string;
-
-  @Column({ type: 'uuid', nullable: true })
-  additionalInfo: string | null;
 }
